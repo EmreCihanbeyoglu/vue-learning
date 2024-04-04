@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>with methods: {{ getMyName() }}</p>
+        <p>with computed: {{ myName }}</p>
+        <button @click="random">Click me</button>
+        <p>{{ counter }}</p>
+    </div>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        const app = createApp( {
+            data() {
+                return {
+                    name: 'Emre',
+                    counter: ''
+                }
+            }, 
+            methods: {
+	            getMyName() {
+                    console.log('method in the methods prop is running')
+		            return this.name;
+	            },
+                random() {
+                    this.counter++;
+                }
+            },
+            computed: {
+                myName() {
+                    console.log('method in the computed prop is running')
+                    return this.name;
+                }
+            }
+        })
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

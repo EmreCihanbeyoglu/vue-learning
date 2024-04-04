@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar</title>
+</head>
+<body>
+    <div id="app">
+        <p v-html="getResult()"></p>
+        <p v-html="smallNumberOutput"></p>
+        
+        
+    </div>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        const app = createApp( {
+            data() {
+                return {
+                    smallNumberOutput: '<h1>random number is smaller than 0.5</h1>',
+				    largeNumberOutput: '<h1>random number is larger than 0.5</h1>'
+                }
+            },
+            methods: {
+                getResult() {
+                    const randomNumber = Math.random();
+                    if(randomNumber < 0.5 ){
+	                    return this.smallNumberOutput; // important
+                    } else {
+	                    return this.largeNumberOutput; // important
+                    }
+                }
+            }
+        })
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Counter</h1>
+        <button v-on:click="incrementCount">increment count</button>
+        <h2>current count: {{ count }}</h2>
+        <h2>current increment amount: {{ increementAmount }}</h2>
+        <br>
+        <label for="incrementAmount">increment by</label>
+        <input type="text" 
+        v-bind:value="increementAmount"
+        v-on:input="updateIncrementAmount">
+    </div>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        const app = createApp( {
+            data() {
+                return {
+                    count: 10,
+                    increementAmount: 10
+                }
+            },
+            methods: {
+                incrementCount() {
+                    this.$data.count += Number(this.increementAmount);
+                    console.log(this.count)
+                },
+                updateIncrementAmount(event) {
+                    this.increementAmount = event.target.value;
+                }
+            }
+        })
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

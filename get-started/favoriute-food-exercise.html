@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite food</title>
+</head>
+<body>
+
+    <div id="app">
+        <div>
+            <h2>food list</h2>
+            <ul>
+                <li v-for="food in foodList">
+                    <div> {{ food }}</div>
+                    <div>
+                        <button v-on:click="addFav(food)" type="button">Favoruite</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <div>
+            <h2>favoriute food list</h2>
+            <ul>
+                <li v-for="fav in favoruites">{{ fav }}</li>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Add new food into list</h2>
+            <label for="newFood">new food:</label>
+            <input type="text" 
+                v-model = "newFoodName"
+                @keyup.enter="addNewFood">
+        </div>
+
+    </div>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        const app = createApp({
+            data() {
+                return {
+                    foodList: ['corba', 'kebap', 'pilav'],
+                    favoruites: [],
+                    newFoodName: ''
+                }
+            },
+            methods: {
+                addFav(fav) {
+                    if(!this.favoruites.includes(fav)) {
+                        this.favoruites.push(fav);
+                    }
+                },
+                addNewFood() {
+                    if(!this.foodList.includes(this.newFoodName)) {
+                        this.foodList.push(this.newFoodName);
+                        this.newFoodName = '';
+                    }
+                }
+            }
+        })
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
