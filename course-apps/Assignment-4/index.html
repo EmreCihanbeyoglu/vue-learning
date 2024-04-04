@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Vue Styling</h1>
+    </header>
+    <section id="assignment">
+      <!-- 1) Fetch the user input and use it as a CSS class -->
+      <!-- The entered class should be added to the below paragraph -->
+      <input type="text" v-model="input"/>
+      <!-- (available classes: "user1", "user2") -->
+      <p v-bind:class="firstParagraphClasses">
+        Style me!
+      </p>
+      <button  @click="setP1Visibility">Toggle Paragraph</button>
+      <!-- 2) Use the "visible" and "hidden" classes to show/ hide the above paragraph -->
+      <!-- Clicking the button should toggle between the two options -->
+
+      <!-- 3) Add dynamic inline styling to the below paragraph and let the user enter a background-color -->
+      <div>
+        <br>
+        <input type="text" v-model="secondInput"/>
+        <p v-bind:style="secondParagraphStyling">Style me inline!</p>
+      </div>
+
+    </section>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const {createApp} = Vue;
+      const app = createApp({
+        data: () => {
+          return {
+            input: '',
+            showP1: true,
+            secondInput: ''
+          }
+        },
+        methods: {
+          setP1Visibility() {
+            this.showP1 = !this.showP1;
+          }
+        },
+        computed: {
+          firstParagraphClasses() {
+            return {
+              user1: this.input === 'user1',
+              user2: this.input === 'user2', 
+              visible: this.showP1,
+              hidden: !this.showP1
+            }
+          },
+          secondParagraphStyling() {
+            return {backgroundColor: this.secondInput};
+          }
+        }
+      });
+
+      app.mount('#assignment')
+    </script>
+
+
+  </body>
+</html>

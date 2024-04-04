@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        * {
+        box-sizing: border-box;
+        }
+
+        html {
+        font-family: 'Jost', sans-serif;
+        }
+
+        body {
+        margin: 0;
+        }
+
+        header {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        margin: 3rem;
+        border-radius: 10px;
+        padding: 1rem;
+        background-color: #4fc08d;
+        color: white;
+        text-align: center;
+        }
+
+        #styling {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        margin: 3rem;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        }
+
+        .demo {
+        width: calc(100% - 32px);
+        height: 100px;
+        margin: 16px;
+        border: 2px dashed #ccc;
+        }
+
+        .selected-box {
+            border-color: red;
+            background-color: bisque;
+        }
+    </style>
+
+    <header>
+        <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling">
+        <div class="demo" :class="boxAClasses" @click="selectDeselectBox('A')"></div>
+        <div class="demo" :class="boxBClasses" @click="selectDeselectBox('B')"></div>
+        <div class="demo" :class="boxCClasses" @click="selectDeselectBox('C')"></div>
+    </section>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const {createApp} = Vue;
+        const app = createApp({
+            data: () => {
+                return {
+                    boxASelected: false,
+                    boxBSelected: false,
+                    boxCSelected: false
+                }
+            },
+            methods: {
+                selectDeselectBox(box) {
+                    if(box === 'A') {
+                        this.boxASelected = !this.boxASelected;
+                    }else if(box === 'B') {
+                        this.boxBSelected = !this.boxBSelected;
+                    } else if(box === 'C') {
+                        this.boxCSelected = !this.boxCSelected;
+                    }
+                }
+            },
+            computed: {
+                boxAClasses() {
+                    return {'selected-box': this.boxASelected};
+                },
+                boxBClasses() {
+                    return {'selected-box': this.boxBSelected};
+                },
+                boxCClasses() {
+                    return {'selected-box': this.boxCSelected};
+                }
+            }
+        })
+
+        app.mount('#styling');
+
+    </script>
+
+
+</body>
+</html>
