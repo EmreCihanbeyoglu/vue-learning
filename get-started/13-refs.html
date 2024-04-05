@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="app">
+        <input type="text" ref="textbox">
+        <button @click="setMessage">set text button</button>
+        <p>{{ message }}</p>
+    </section>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const {createApp} = Vue;
+      const app = createApp({
+        data: () => {
+          return {
+            message: ''
+          }
+        },
+        methods: {
+            setMessage() {
+                const myTextbox = this.$refs.textbox;
+                console.dir(myTextbox);
+            }
+        }
+      });
+
+      app.mount('#app');
+    </script>
+    
+</body>
+</html>
