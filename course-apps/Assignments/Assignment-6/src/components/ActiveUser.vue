@@ -1,10 +1,21 @@
 <template>
-$END$
+  <h2>{{name}}</h2>
+  <h3>{{age}}</h3>
 </template>
 
 <script>
 export default {
-name: "ActiveUser.vue"
+  name: "ActiveUser.vue",
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    age: {
+      type: Number,
+      required: true
+    }
+  },
 }
 </script>
 

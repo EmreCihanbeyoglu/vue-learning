@@ -1,13 +1,10 @@
 <template>
-$END$
+
+  <second-level-child></second-level-child>
 </template>
 
 <script>
-export default {
-name: "FirstLevelChild.vue"
-}
+  export default {
+
+  }
 </script>
-
-<style scoped>
-
-</style>
