@@ -26,10 +26,22 @@
     <h2>Count: {{ myCount }}</h2>
     <button @click="increaseCount">Increase count</button>
   </section>
+
+  <section class="container">
+    <h2>My number: {{ number }}</h2>
+    <input type="text" ref="numberTextbox">
+    <button @click="setNumber">set number</button>
+  </section>
+
+  <section class="container">
+    <UserData :firstname="myUser.firstname" :lastname="myUser.lastname" :age="myUser.age"/>
+  </section>
 </template>
 
 <script setup>
   import { ref, reactive, isRef, isReactive, computed, watch } from 'vue';
+  import UserData from './components/UserData.vue';
+
 
   /**
    * ref object
@@ -114,6 +126,25 @@
     }
   })
 
+  /**
+   * ref attribute
+   */
+
+   const number = ref(0);
+   const numberTextbox = ref();
+   function setNumber() {
+    number.value = numberTextbox.value.value;
+   }
+
+
+   /**
+    * components and props
+    */
+   const myUser = ref({
+    firstname: 'Emre',
+    lastname: "Cihanbeyoglu",
+    age: 33
+   })
 
 </script>
 
